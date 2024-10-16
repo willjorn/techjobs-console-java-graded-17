@@ -120,15 +120,17 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+
         // If there are no jobs to print, display "No Results"
         if (someJobs.isEmpty()) {
-            System.out.println("No Results");
+            System.out.printf("No Results");
             return;
         }
+        //prints a list of jobs
 
         // Iterate over each job
         for (HashMap<String, String> job : someJobs) {
+            System.out.println("");
             System.out.println("*****");
 
             // Iterate over the fields of the job and print each key-value pair
@@ -136,7 +138,7 @@ public class TechJobs {
                 System.out.println(field.getKey() + ": " + field.getValue());
             }
 
-            System.out.println("*****\n");
+            System.out.println("*****");
         }
     }
 
