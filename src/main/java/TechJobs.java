@@ -10,7 +10,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -42,13 +42,12 @@ public class TechJobs {
                     printJobs(JobData.findAll());
                 } else {
 
-                    ArrayList<HashMap<String, String>> results = JobData.findAll();
+                    ArrayList <String> results = JobData.findAll(columnChoice);
 
-// system prints out new line
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
                     // Print list of skills, employers, etc
-                    for (HashMap<String, String> item : results) {
+                    for (String item : results) {
                         System.out.println(item);
                     }
                 }
@@ -63,7 +62,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchTerm));
+                     printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -113,7 +112,8 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while (!validChoice);
+        } while(!validChoice);
+
 
         return choiceKeys[choiceIdx];
     }
@@ -142,6 +142,5 @@ public class TechJobs {
             System.out.println("*****");
         }
     }
+
 }
-
-

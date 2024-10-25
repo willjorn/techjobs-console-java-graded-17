@@ -27,32 +27,24 @@ public class JobData {
      * @param value The column to retrieve values from
      * @return List of all the values of the given field
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+    public static ArrayList<String> findAll(String field) {
+
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
-        String searchTerm = value.toLowerCase();  // Convert the search term to lowercase
+        ArrayList<String> values = new ArrayList<>();
 
-        // Iterate over each job (each job is a HashMap)
-        for (HashMap<String, String> job : allJobs) {
-            // Check all fields of the job
-            for (String field : job.keySet()) {
-                String fieldValue = job.get(field).toLowerCase();  // Convert the field value to lowercase
+        for (HashMap<String, String> row : allJobs) {
+            String aValue = row.get(field);
 
-                // If the field contains the search term, add the job to matchingJobs
-                if (fieldValue.contains(searchTerm)) {
-                    if (!matchingJobs.contains(job)) {  // Avoid duplicates
-                        matchingJobs.add(job);
-                    }
-                    break;  // No need to check other fields if a match is found
-                }
+            if (!values.contains(aValue)) {
+                values.add(aValue);
             }
         }
 
-        return matchingJobs;
+        return values;
     }
-
 
 
     public static ArrayList<HashMap<String, String>> findAll() {
@@ -103,7 +95,31 @@ public class JobData {
 
         // TODO - implement this method
 
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+        // load data, if not already loaded
+        loadData();
 
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+        String searchTerm = value.toLowerCase();  // Convert the search term to lowercase
+
+        // Iterate over each job (each job is a HashMap)
+        for (HashMap<String, String> job : allJobs) {
+            // Check all fields of the job
+            for (String field : job.keySet()) {
+                String fieldValue = job.get(field).toLowerCase();  // Convert the field value to lowercase
+
+                // If the field contains the search term, add the job to matchingJobs
+                if (fieldValue.contains(searchTerm)) {
+                    if (!matchingJobs.contains(job)) {  // Avoid duplicates
+                        matchingJobs.add(job);
+                    }
+                    break;  // No need to check other fields if a match is found
+                }
+            }
+        }
+
+        return matchingJobs;
+    }
 
     /**
      * Read in data from a CSV file and store it in a list
